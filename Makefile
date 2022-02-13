@@ -1,19 +1,11 @@
 bench:
-	@>base.txt 
-	@for i in `seq 1 5`; do go test -bench=. -cpu=2 >> base.txt; done
-
-	@>padded.txt
-	@for i in `seq 1 5`; do go test -bench=. -cpu=2 -tags padded >> padded.txt; done
-
+	go test -bench=. -cpu=2 -count=5              > base.txt
+	go test -bench=. -cpu=2 -count=5 -tags padded > padded.txt
 	benchstat base.txt padded.txt
 
 bench-atomic:
-	@>base.txt # erase file
-	@for i in `seq 1 5`; do go test -bench=. -cpu=2 -tags atomic >> base.txt; done
-
-	@>padded.txt
-	@for i in `seq 1 5`; do go test -bench=. -cpu=2 -tags atomic,padded >> padded.txt; done
-
+	go test -bench=. -cpu=2 -count=5 -tags atomic        > base.txt
+	go test -bench=. -cpu=2 -count=5 -tags atomic,padded > padded.txt
 	benchstat base.txt padded.txt
 
 build:
