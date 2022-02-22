@@ -1,3 +1,5 @@
+This repo is a company for blog post: https://medium.com/p/e6e7f9df3187
+
 ### Example of CPU cache false-sharing in Go.
 A simple example where 2 integer variables are incremented concurrently.<br>
 Baseline version suffers from false-sharing due to values share same cache line:
